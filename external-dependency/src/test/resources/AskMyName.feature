@@ -15,11 +15,7 @@ Feature: Ask my name
 
   Scenario: Hit endpoint /whatsyourmiddlename
     Given a running application
-    When accessing the endpoint http://canned:8082/whatsyourage
+    When accessing the endpoint http://localhost:8083/whatsyourage
     Then should return 18
 
-  Scenario: Hit endpoint /whatsyourjob
-    Given a running application
-    When accessing the endpoint http://external:8084/whatsyourjob
-    Then should return Still seeking one
 

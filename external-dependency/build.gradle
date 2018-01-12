@@ -14,7 +14,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
-group = 'br.com.alex.cucumber.example'
+group = 'br.com.alex.cucumber.example.external.dependency'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -22,22 +22,6 @@ repositories {
 	mavenCentral()
 }
 
-configurations {
-    cucumberRuntime {
-        extendsFrom testRuntime
-    }
-}
-
-task cucumber() {
-    dependsOn assemble, compileTestJava
-    doLast {
-        javaexec {
-            main = "cucumber.api.cli.Main"
-            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty', '--glue', 'br.com.alex.cucumber.example', 'src/test/resources']
-        }
-    }
-}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-jersey')

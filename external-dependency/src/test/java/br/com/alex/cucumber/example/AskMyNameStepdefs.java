@@ -23,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources", glue = "br.com.alex.cucumber.example")
+@CucumberOptions(features = "src/test/resources")
 @ContextConfiguration(loader = SpringBootContextLoader.class, classes = Application.class)
 public class AskMyNameStepdefs extends ApplicationTests implements cucumber.api.java8.En {
 

@@ -1,4 +1,17 @@
-web:
+local:
   build: .
   ports:
     - "8080:8080"
+  links:
+    - canned
+    - external
+
+canned:
+  extends:
+    file: ./mocked-dependency/docker-compose.yml
+    service: canned
+
+external:
+  extends:
+    file: ./external-dependency/docker-compose.yml
+    service: web
