@@ -8,6 +8,7 @@ Feature: Ask my name
     When accessing the endpoint http://localhost:8080/whatsyourname
     Then should return Alex
 
+  @MockedApi
   Scenario: Hit endpoint /whatsyourmiddlename
     Given a running application
     When accessing the endpoint http://localhost:8081/whatsyourmiddlename

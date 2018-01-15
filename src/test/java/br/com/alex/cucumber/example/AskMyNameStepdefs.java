@@ -13,11 +13,11 @@ import org.apache.http.util.EntityUtils;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.SpringBootContextLoader;
 import org.springframework.test.context.ContextConfiguration;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -34,10 +34,9 @@ public class AskMyNameStepdefs extends ApplicationTests implements cucumber.api.
     private MyCustomWorld world;
 
     public AskMyNameStepdefs() {
-        Before(() -> {
+        Before(new String[]{"@MockedApi"}, () -> {
             world.wireMockServer = new WireMockServer(wireMockConfig().port(8081)); //No-args constructor will start on port 8080, no HTTPS
             world.wireMockServer.start();
-            world.springContext = SpringApplication.run(Application.class);
             world.wireMockServer.stubFor(get(WireMock.urlMatching(".*whatsyourmiddlename.*"))
                     .willReturn(aResponse()
                             .withHeader("Content-Type", "text/plain")
@@ -45,8 +44,7 @@ public class AskMyNameStepdefs extends ApplicationTests implements cucumber.api.
                             .withBody("Rocha")));
         });
 
-        After(() -> {
-            world.springContext.close();
+        After(new String[]{"@MockedApi"}, () -> {
             world.wireMockServer.stop();
         });
 
