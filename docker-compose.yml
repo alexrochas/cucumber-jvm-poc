@@ -1,5 +1,10 @@
 local:
   build: .
+  environment:
+    - SERVER_PORT=8080
+    - SERVICE_WHATSYOURMIDDLENAME_URL=http://localhost:8081
+    - SERVICE_WHATSYOURAGE_URL=http://canned:8082
+    - SERVICE_WHATSYOURJOB_URL=http://external:8084
   ports:
     - "8080:8080"
   links:
@@ -7,11 +12,17 @@ local:
     - external
 
 canned:
+  log_driver: "none"
+  environment:
+    - SERVER_PORT=8082
   extends:
     file: ./mocked-dependency/docker-compose.yml
     service: canned
 
 external:
+  log_driver: "none"
+  environment:
+    - SERVER_PORT=8084
   extends:
     file: ./external-dependency/docker-compose.yml
     service: web

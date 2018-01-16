@@ -5,22 +5,22 @@ Feature: Ask my name
 
   Scenario: Hit endpoint /whatsyourname
     Given a running application
-    When accessing the endpoint http://localhost:8080/whatsyourname
+    When accessing the endpoint /whatsyourname
     Then should return Alex
 
   @MockedApi
   Scenario: Hit endpoint /whatsyourmiddlename
     Given a running application
-    When accessing the endpoint http://localhost:8081/whatsyourmiddlename
+    When accessing the endpoint /whatsyourmiddlename
     Then should return Rocha
 
-  Scenario: Hit endpoint /whatsyourmiddlename
+  Scenario: Hit endpoint /whatsyourage
     Given a running application
-    When accessing the endpoint http://canned:8082/whatsyourage
+    When accessing the endpoint /whatsyourage
     Then should return 18
 
   Scenario: Hit endpoint /whatsyourjob
     Given a running application
-    When accessing the endpoint http://external:8084/whatsyourjob
+    When accessing the endpoint /whatsyourjob
     Then should return Still seeking one
 

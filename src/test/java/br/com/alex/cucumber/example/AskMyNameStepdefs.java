@@ -53,7 +53,7 @@ public class AskMyNameStepdefs extends ApplicationTests implements cucumber.api.
 
         When("accessing the endpoint (.*)", (String endpoint) -> {
             CloseableHttpClient httpClient = HttpClients.createDefault();
-            HttpGet getRequest = new HttpGet(endpoint);
+            HttpGet getRequest = new HttpGet("http://localhost:8080" + endpoint);
             CloseableHttpResponse response = httpClient.execute(getRequest);
             world.name = EntityUtils.toString(response.getEntity());
         });

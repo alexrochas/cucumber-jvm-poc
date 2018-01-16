@@ -1,0 +1,10 @@
+server:
+  port: ${port:8080}
+
+service:
+  whatsyourage:
+    url: http://localhost:8082
+  whatsyourmiddlename:
+    url: http://localhost:8081
+  whatsyourjob:
+    url: http://localhost:8084
